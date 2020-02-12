@@ -108,6 +108,18 @@
 
         <!-- daily -->
         <div class="form-group" ng-show="myFrequency.base === 3">
+<!--             <label>Every: </label>
+            <div class="select-options" ng-include="'dates-template.html'"></div> -->
+<!--             <label>day(s) at</label> -->
+            <div class="select-options" ng-include="'hours-template.html'"></div>
+            <label>hours(s) and</label>
+            <div class="select-options" ng-include="'minutes-template.html'"></div>
+            <label>minute(s).</label>
+        </div>
+        <!-- daily end -->
+
+                <!-- custom -->
+        <div class="form-group" ng-show="myFrequency.base === 7">
             <label>Every: </label>
             <div class="select-options" ng-include="'dates-template.html'"></div>
             <label>day(s) at</label>
@@ -116,7 +128,7 @@
             <div class="select-options" ng-include="'minutes-template.html'"></div>
             <label>minute(s).</label>
         </div>
-        <!-- daily end -->
+        <!-- custom end -->
 
 
         <!-- weekly -->

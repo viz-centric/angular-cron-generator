@@ -1,8 +1,8 @@
 export function CronGeneratorDirective (cronGeneratorService) {
-	'ngInject';
+  'ngInject';
 
-	function linkFn($scope, $el, $attr, $ngModel) {
-		$scope.myFrequency= {
+  function linkFn($scope, $el, $attr, $ngModel) {
+    $scope.myFrequency= {
       base: 0
     };
 
@@ -21,7 +21,11 @@ export function CronGeneratorDirective (cronGeneratorService) {
     {
       value: 3,
       label: "Daily"
-    }, 
+    },
+    {
+      value: 7,
+      label: "Custom"
+    },
     {
       value: 4,
       label: "Weekly"
@@ -69,22 +73,22 @@ export function CronGeneratorDirective (cronGeneratorService) {
     $scope.days = [0, 1, 2, 3, 4, 5, 6];
     $scope.months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
-		if($scope.cronStyle === "quartz") {
+    if($scope.cronStyle === "quartz") {
         $scope.days = [1, 2, 3, 4, 5, 6, 7];
     }
 
     $scope.$watch("myFrequency", function (n, o) {
-	    if(angular.isUndefined(n)){
+      if(angular.isUndefined(n)){
         $scope.myFrequency= {
           base: 0
         }
-	    }
-	    if (n && o) {
+      }
+      if (n && o) {
         if (n.base) {
           var str = cronGeneratorService.convertObjectIntoCronString(n, $scope.cronStyle, $scope.allowMultiple);
           $ngModel.$setViewValue(str);
         }
-	    }
+      }
     }, true);
 
     $scope.initKeys = function(){
@@ -120,10 +124,10 @@ export function CronGeneratorDirective (cronGeneratorService) {
       $scope.myFrequency = {};
       $scope.myFrequency.base = key;
     }
-	}
+  }
 
-	let directive = {
-		restrict: "EA",
+  let directive = {
+    restrict: "EA",
     replace: true,
     transclude: true,
     require: "ngModel",
@@ -133,6 +137,6 @@ export function CronGeneratorDirective (cronGeneratorService) {
     },
     templateUrl: "cron.generator.html",
     link: linkFn
-	}
-	return directive;
+  }
+  return directive;
 }
