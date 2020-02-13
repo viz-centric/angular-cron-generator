@@ -120,7 +120,10 @@ export class CronGeneratorService {
     if(count >= 4){
       cron[4] = typeof o.days !== "undefined" ? o.days : "*";
     }
-    if(count >= 5){
+    if(count===5){
+      cron[4]="*";
+    }
+    if(count > 5){
       cron[4] = "*";
       cron[3] = typeof o.months !== "undefined" ? o.months : "*";
     }
